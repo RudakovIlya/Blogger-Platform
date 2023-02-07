@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://RudakovIlya.github.io/Blogger-Platform",
+  "homepage": "https://RudakovIlya.github.io/Blogger-Platform",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
