@@ -1,26 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import {postsAPI} from "../../app/api";
+import {useEffect, useState} from 'react';
 import {useLocation, useParams} from "react-router-dom";
+import {Card} from "../../components/Card/Card";
+import {FlexContainer} from "../../components/FlexContainer";
 
-const Post = () => {
+export const Post = () => {
 
     const [post, setPosts] = useState<any>(null)
     const {id} = useParams<{ id: string }>()
     const location = useLocation();
-    console.log(location)
-    useEffect(() => {
-        axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`).then(response => {
-            setPosts(response.data)
 
+    useEffect(() => {
+        postsAPI.getPostDetails(id as string).then(data => {
+            setPosts(data)
         })
     }, [])
 
     return (
-        <div>
-            <span>{location.search}</span> <span>{post && post.title}</span>
-            <h1>       {post && post.title}</h1>
-        </div>
+        <FlexContainer wrap={'wrap'} margin={'0 -15px'}>
+        </FlexContainer>
     );
 };
-
-export default Post;

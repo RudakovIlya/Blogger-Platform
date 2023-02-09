@@ -1,10 +1,12 @@
+import {memo} from "react";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import {FlexContainer} from "./FlexContainer";
-import {MdOutlineFormatIndentDecrease} from "react-icons/md";
+import {MdGridView, MdList} from "react-icons/md";
 
 const SAside = styled.aside`
-  min-height: calc(100vh - 60px);
+  text-align: center;
+  height: 100%;
   padding-top: 43px;
   min-width: 250px;
   box-shadow: var(--shadow);
@@ -14,33 +16,33 @@ const SAside = styled.aside`
 const SNavLink = styled(NavLink)`
   color: var(--colors-text);
   font-size: var(--l-text);
+  position: relative;
+  line-height: 1.7;
 
   &.active {
-    color: #F8346B
+    color: var(--active-link);
+    border-right: 2px solid var(--active-link);
   }
 
-  &:not(:last-child) {
-    margin-bottom: 24px;
+  svg {
+    vertical-align: middle;
   }
 `
 
-export const Aside = () => {
+export const Aside = memo(() => {
     return (
         <SAside>
-            <FlexContainer tag={'div'} direction={'column'} justify={'center'} align={'center'}>
+            <FlexContainer tag={'div'} direction={'column'} align={'stretch'} rgap={24}>
                 <SNavLink to={'/blogs'}>
-                    <FlexContainer tag={'span'}>
-                        <MdOutlineFormatIndentDecrease style={{marginRight: 12}}/>
-                        Blogs
-                    </FlexContainer>
+                    <MdList style={{marginRight: 12}} size={24}/>
+                    Blogs
                 </SNavLink>
                 <SNavLink to={'/posts'}>
-                    <FlexContainer tag={'span'}>
-                        <MdOutlineFormatIndentDecrease style={{marginRight: 12}}/>
-                        Posts
-                    </FlexContainer>
+                    <MdGridView style={{marginRight: 12}} size={24}/>
+                    Posts
                 </SNavLink>
+
             </FlexContainer>
         </SAside>
     )
-}
+})

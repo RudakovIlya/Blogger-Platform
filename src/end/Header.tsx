@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import {Title} from "../components/Title";
 import {Container} from "./Container";
-import {FlexContainer} from "./FlexContainer";
-import {memo, useEffect} from "react";
-import {Title} from "./Title";
-import {useAppDispatch, useAppSelector} from "../app/hooks";
 import {changeTheme} from "../features/theme/themeSlice";
+import {FlexContainer} from "../components/FlexContainer";
+import {memo, useEffect} from "react";
 import {MdOutlineBrightness6} from "react-icons/md";
+import {useAppDispatch, useAppSelector} from "../app/hooks";
 
 const SHeader = styled.header`
   background-color: var(--colors-bg-header-nav);

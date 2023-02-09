@@ -93,6 +93,7 @@ export const GlobalStyled = createGlobalStyle`
   #root {
     font-family: Inter, sans-serif;
     min-height: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -103,6 +104,7 @@ export const GlobalStyled = createGlobalStyle`
     --l-title: 26px;
     --m-title: 20px;
     --s-title: 18px;
+    --xs-title: 16px;
 
     /*Font-Weight*/
     --fw-600: 600;
@@ -118,13 +120,20 @@ export const GlobalStyled = createGlobalStyle`
     /*Text*/
     --l-text: 14px;
     --m-text: 12px;
+
+    /*Active-Link*/
+    --active-link: #F8346B;
+  }
+
+  body {
+    background-color: var(--colors-bg-main);
   }
 
   body[data-theme="dark"] {
     --colors-text: #FAF7F8;
     --colors-bg-header-nav: #202124;
-    --colors-bg-main: #202124;
-    --shadow: 0px 5px 20px rgba(29, 33, 38, 0.03), 0px 1px 2px rgba(29, 33, 38, 0.1);
+    --colors-bg-main: #1b1b1d;
+    --shadow: 0 0 0px hsla(0, 0%, 100%, .5), 0 0 2px hsla(0, 0%, 100%, .5)
   }
 
   body[data-theme="light"] {

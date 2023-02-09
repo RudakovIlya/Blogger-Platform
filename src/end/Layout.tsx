@@ -1,18 +1,18 @@
+import {Main} from "../components/MainContainer";
+import {Aside} from "../components/Aside";
 import {Header} from "./Header";
-import {Aside} from "./Aside";
-import {Container} from "./Container";
-import {FlexContainer} from "./FlexContainer";
 import {Outlet} from "react-router-dom";
+import {FlexContainer} from "../components/FlexContainer";
 
 export const Layout = () => {
     return (
         <>
             <Header/>
-            <FlexContainer flexSize={'1 1 100%'}>
+            <FlexContainer>
                 <Aside/>
-                <Container maxWidth={980}>
+                <Main>
                     <Outlet/>
-                </Container>
+                </Main>
             </FlexContainer>
         </>
     );

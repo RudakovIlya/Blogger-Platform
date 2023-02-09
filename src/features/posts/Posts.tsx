@@ -1,32 +1,41 @@
+import {postsAPI} from "../../app/api";
 import {useEffect, useState} from "react";
-import axios from "axios";
-import {NavLink, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
+import {FlexContainer} from "../../components/FlexContainer";
+import {Card} from "../../components/Card/Card";
+import {FlexItem} from "../../end/FlexItem";
 
 export const Posts = () => {
 
-        const [posts, setPosts] = useState<any []>([])
+        const [photos, setPhotos] = useState<{
+            albumId: number,
+            id: number,
+            title: string,
+            url: string,
+            thumbnailUrl: string
+        } []>([])
         const location = useLocation()
         useEffect(() => {
-            axios.get('https://jsonplaceholder.typicode.com/posts').then(response => {
-                setPosts(response.data)
-            })
+            postsAPI.getPosts().then(data => setPhotos(data))
         }, [])
 
+        const postCards = photos.length && photos.slice(0, 9).map(photo => {
+            return (
+                <FlexItem key={photo.id} flex={'1 1 33.333%'} gap={'0 15px'} mw={320}>
+                    <Card
+                        settings={{isColumn: true, imgView: 'circular'}}
+                        content={photo}
+                    />
+                </FlexItem>
+            )
+        })
+
         return (
-            <div>
-                <h1>{location.pathname}</h1>
-                {
-                    posts.length && posts.map(item => {
-                        return <>
-                            <div>
-                                <NavLink to={`/posts/${item.id}`}>
-                                    {item.title}
-                                </NavLink>
-                            </div>
-                        </>
-                    })
-                }
-            </div>
+            <>
+                <FlexContainer rgap={32} wrap={'wrap'} margin={'0 -15px'}>
+                    {postCards}
+                </FlexContainer>
+            </>
         );
     }
 ;

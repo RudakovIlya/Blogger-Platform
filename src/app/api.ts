@@ -1,13 +1,22 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://ht-02-03.vercel.app/api/',
+    baseURL: 'https://jsonplaceholder.typicode.com/',
 });
 
-export const postsAPI = {}
+interface IPhotos {
+    albumId: 1,
+    id: number,
+    title: string,
+    url: string,
+    thumbnailUrl: string
+}
 
-export const blogsAPI = {
-    getBlogs() {
-        return instance.get('posts').then(response => response.data)
+export const postsAPI = {
+    getPosts() {
+        return instance.get<IPhotos[]>('photos').then(response => response.data)
+    },
+    getPostDetails(id: string) {
+        return instance.get<IPhotos>(`photos/${id}`).then(response => response.data)
     }
 }
